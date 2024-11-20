@@ -5,3 +5,4 @@ pillow
 pytest
 scikit-learn
 pandas
+matplotlib
