@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torchvision import datasets, transforms
 from model import MNISTModel
+from data_loader import get_mnist_loader
 from datetime import datetime
 import os
 
@@ -10,14 +10,8 @@ def train():
     # Set device
     device = torch.device("cpu")
     
-    # Load MNIST dataset
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,))
-    ])
-    
-    train_dataset = datasets.MNIST('./data', train=True, download=True, transform=transform)
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
+    # Load MNIST dataset using the new function
+    train_loader = get_mnist_loader()
     
     # Initialize model
     model = MNISTModel().to(device)

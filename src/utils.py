@@ -22,7 +22,10 @@ def get_model_accuracy(model, device="cpu"):
             total += target.size(0)
             correct += (predicted == target).sum().item()
     
+    # print(f'Accuracy of the model on the 10000 test images: {100 * correct / total}%')
+    
     return 100 * correct / total
 
 def count_parameters(model):
+    # print(f'The model has {sum(p.numel() for p in model.parameters() if p.requires_grad)} trainable parameters')
     return sum(p.numel() for p in model.parameters() if p.requires_grad) 

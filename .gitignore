@@ -3,6 +3,10 @@ __pycache__/
 /src/data/
 /src/models/
 /src/trial_train.py
+/tests/.pytest_cache/
+/tests/data/
+/tests/models/
+/trial_train.py
 *.py[cod]
 *$py.class
 *.so
