@@ -39,7 +39,7 @@ def train():
     
     # Save model with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    save_path = f'models/model_mnist_{timestamp}.pth'
+    save_path = f'model_mnist_{timestamp}.pth'
     torch.save(model.state_dict(), save_path)
     return save_path
 
