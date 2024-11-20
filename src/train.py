@@ -37,9 +37,12 @@ def train():
         if batch_idx % 100 == 0:
             print(f'Batch {batch_idx}/{len(train_loader)}, Loss: {loss.item():.4f}')
     
-    # Save model with timestamp
+    # Create models directory if it doesn't exist
+    os.makedirs('models', exist_ok=True)
+    
+    # Save model with timestamp in models directory
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    save_path = f'model_mnist_{timestamp}.pth'
+    save_path = os.path.join('models', f'model_mnist_{timestamp}.pth')
     torch.save(model.state_dict(), save_path)
     return save_path
 
