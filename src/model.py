@@ -16,3 +16,6 @@ class MNISTModel(nn.Module):
         x = x.view(-1, 32 * 7 * 7)
         x = self.fc(x)
         return x 
+    
+    def to_device(self):
+        return self.to('cpu')

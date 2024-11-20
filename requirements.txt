@@ -1,4 +1,7 @@
 torch
 torchvision
+numpy
 pytest
-numpy 
+scikit-learn
+pandas
+# Add other required packages 
