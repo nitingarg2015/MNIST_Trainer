@@ -29,6 +29,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
+    - name: Train model
+      run: |
+        python src/train.py
+        
     - name: Run tests
       run: |
         python -m pytest tests/ --junitxml=test-results.xml -v
@@ -38,10 +42,6 @@ jobs:
       if: always()
       with:
         files: test-results.xml
-        
-    - name: Train model
-      run: |
-        python src/train.py
         
     - name: Upload model artifacts
       uses: actions/upload-artifact@v3
