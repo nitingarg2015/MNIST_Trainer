@@ -24,17 +24,24 @@ def test_model_parameters():
 
 def test_model_accuracy():
     model = MNISTModel()
-    # Update path to look in models directory
-    model_path = os.path.join('models')
+    
+    # Look in the models directory
+    model_path = 'models'
     if not os.path.exists(model_path):
         pytest.skip("Models directory not found")
         
     model_files = [f for f in os.listdir(model_path) if f.startswith('model_mnist_') and f.endswith('.pth')]
     if not model_files:
-        pytest.skip("No trained model found")
+        pytest.skip("No trained model found in models directory")
     
+    # Load the latest model
     latest_model = max(model_files)
-    model.load_state_dict(torch.load(os.path.join(model_path, latest_model)))
+    model_file_path = os.path.join(model_path, latest_model)
+    print(f"Loading model from: {model_file_path}")  # Debug print
     
-    accuracy = get_model_accuracy(model)
-    assert accuracy > 80, f"Model accuracy is {accuracy}%, should be > 80%" 
+    try:
+        model.load_state_dict(torch.load(model_file_path))
+        accuracy = get_model_accuracy(model)
+        assert accuracy > 80, f"Model accuracy is {accuracy}%, should be > 80%"
+    except Exception as e:
+        pytest.fail(f"Failed to load or test model: {str(e)}") 
