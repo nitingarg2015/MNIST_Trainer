@@ -25,7 +25,13 @@ jobs:
         
     - name: Run tests
       run: |
-        python -m pytest tests/
+        python -m pytest tests/ --junitxml=test-results.xml -v
+        
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()  # Run this step even if previous steps fail
+      with:
+        files: test-results.xml
         
     - name: Train model
       run: |
