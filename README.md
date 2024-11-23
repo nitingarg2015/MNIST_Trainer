@@ -1,3 +1,5 @@
+[![ML Training Pipeline](https://github.com/nitingarg2015/MNIST_Trainer/actions/workflows/ml-pipeline.yml/badge.svg)](https://github.com/nitingarg2015/MNIST_Trainer/actions/workflows/ml-pipeline.yml)
+
 ## Objective
 
 Make a MNIST based model that has following characteristics:
