@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from model import MNISTModel3
+from model import MNISTModel
 from datetime import datetime
 import os
 from utils import get_model_accuracy, get_mnist_loader
@@ -14,7 +14,7 @@ def train():
     train_loader = get_mnist_loader(train = True)
     
     # Initialize model
-    model = MNISTModel3().to(device)
+    model = MNISTModel().to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr = 0.01)
     
