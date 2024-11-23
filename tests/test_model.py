@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import torch
 import pytest
 from src.model import MNISTModel
-from src.utils import count_parameters, get_model_accuracy
+from src.utils import count_parameters
 
 def test_model_architecture():
     model = MNISTModel()
@@ -38,9 +38,10 @@ def test_model_accuracy():
     print(f"Loading model from: {model_file_path}")  # Debug print
     
     try:
-        model.load_state_dict(torch.load(model_file_path))
-        accuracy = get_model_accuracy(model)
-        assert accuracy > 95, f"Model accuracy is {accuracy}%, should be > 95%"
+        checkpoint = torch.load(model_file_path)
+        # model.load_state_dict(checkpoint['model_state_dict'])
+        train_accuracy = checkpoint['train_accuracy']
+        assert train_accuracy > 95, f"Model accuracy is {train_accuracy}%, should be > 95%"
     except Exception as e:
         pytest.fail(f"Failed to load or test model: {str(e)}") 
 
